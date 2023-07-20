@@ -29,3 +29,6 @@ class Renter(models.Model):
   last_name = models.CharField(max_length=30),
   phone = models.CharField(max_length=15),
   vipt_num = models.IntegerField(default=0)
+
+  def __str__(self):
+    return self.first_name + " " + self.last_name + " - #" + self.phone
