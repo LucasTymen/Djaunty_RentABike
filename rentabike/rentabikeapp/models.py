@@ -32,3 +32,10 @@ class Renter(models.Model):
 
   def __str__(self):
     return self.first_name + " " + self.last_name + " - #" + self.phone
+
+
+class Rental(models.Model):
+  bike = models.ForeignKey(Bike, on_delete=models.CASCADE),
+  renter = models.ForeignKey(Renter, on_delete=models.CASCADE),
+  date = models.DateField(default=datetime.date.today),
+  price = models.FloatField(default=0.0)
