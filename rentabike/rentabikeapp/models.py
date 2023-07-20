@@ -39,3 +39,13 @@ class Rental(models.Model):
   renter = models.ForeignKey(Renter, on_delete=models.CASCADE),
   date = models.DateField(default=datetime.date.today),
   price = models.FloatField(default=0.0)
+
+  def calc_price(self):
+    curr_price = BASE_PRICE
+    if self.bike.bike_type == "TA":
+      curr_price += TANDEM_SURCHARGE
+    if self.bike.bike_type == "EL":
+      curr_price += ELECTRIC_SURCHARGE
+    if self.renter.vip_num > 0:
+      curr_price *= 0.8
+    self.price = curr_price
