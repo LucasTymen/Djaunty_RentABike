@@ -17,8 +17,15 @@ class Bike(models.Model):
     (ELECTRIC, "Electric")
   ]
 
-  bike_type = models.Charflied(max_length=2,choices=BIKE_TYPE_CHOICES,default=STANDARD)
-  color = models.Charfield(max_length=10,default="")
+  bike_type = models.CharField(max_length=2,choices=BIKE_TYPE_CHOICES,default=STANDARD)
+  color = models.CharField(max_length=10,default="")
 
   def __str__(self):
     return self.bike_type + " - " + self.color
+
+
+class Renter(models.Model):
+  first_name = models.CharField(max_length=30),
+  last_name = models.CharField(max_length=30),
+  phone = models.CharField(max_length=15),
+  vipt_num = models.IntegerField(default=0)
